@@ -17,6 +17,7 @@ This Software Requirements Specification (SRS) outlines the functional, non-func
 | Version | Date | Description of Changes | Author(s) | Approved By |
 |---|---|---|---|---|
 | v0.1 | 2026-11-11 | Document structure and section ownership | Sara (Product Owner) | — |
+| v1.0 | 2026-11-11 | Complete Milestone 1 SRS: requirements, NFR metrics, use case model and RTM | Team Beta | Dr. Bestoon Hussien (pending) |
 
 ## 1. Introduction & System Vision
 
@@ -120,4 +121,35 @@ System requirements expand the user requirements into explicit technical stateme
 
 ## 7. Requirements Traceability & Change Control
 
-> _Owner: Product Owner — branch `feature/srs-rtm`. Replace this line with the section content._
+Requirements traceability links each user need to its detailed system requirements, its use case and the automated test that will verify it. Change control governs how changes to requirements are evaluated, approved and tracked.
+
+### 7.1 Requirements Traceability Matrix (UR → SR → UC → Test)
+
+| User Requirement (UR) | System Requirement (SR) | UML Use Case | Automated JUnit Test |
+|---|---|---|---|
+| UR-1 [Security] | SR-1.1, SR-1.2, SR-1.3, SR-1.4 | UC-01: Log In (UC-06, UC-09) | `AuthenticationTest.java` |
+| UR-2 [Account Creation] | SR-2.1, SR-2.2, SR-2.3, SR-2.4 | UC-02: Create Account (UC-11, UC-12) | `AccountCreationTest.java`, `AccountRulesTest.java` |
+| UR-3 [Balance Inquiry] | SR-3.3 | UC-04: Check Balance | `BalanceInquiryTest.java` |
+| UR-4 [Deposit] | SR-3.2, SR-3.4 | UC-05: Deposit Funds (UC-08) | `DepositFundsTest.java` |
+| UR-5 [Withdrawal] | SR-3.1, SR-3.4, SR-2.1, SR-2.3 | UC-03: Withdraw Funds (UC-07, UC-08, UC-10) | `WithdrawalAtomicTest.java` |
+
+The JUnit test classes are planned names. They will be implemented under `/tests` when coding starts in Milestone 2.
+
+### 7.2 What each planned test class verifies
+
+| Test class | Verifies |
+|---|---|
+| `AuthenticationTest.java` | BCrypt cost factor 12; lock after 3 failures within 5 minutes; MFA code required; session expiry |
+| `AccountCreationTest.java` | Both account types can be created; invalid requests are rejected |
+| `AccountRulesTest.java` | Overdraft limit of USD 500.00; minimum balance of USD 100.00; interest `I = B * (r / 12)` |
+| `BalanceInquiryTest.java` | Only the owner can read a balance; no data changes; response under 1.5 seconds |
+| `DepositFundsTest.java` | Balance increases by the amount; ledger record written; invalid amounts rejected |
+| `WithdrawalAtomicTest.java` | Boundary values at the floor; `ERR_INSUFFICIENT_FUNDS`; rollback; concurrent withdrawals |
+
+### 7.3 Change Control
+
+1. **Request:** a team member opens a GitHub Issue labelled `change-request` naming the affected UR, SR or UC.
+2. **Impact analysis:** the Product Owner and System Architect use the matrix above to list every affected requirement, use case and test.
+3. **Approval:** the Product Owner approves scope and priority; the System Architect approves the technical impact.
+4. **Implementation:** the change is made on a `feature/*` branch that updates this SRS, the UML diagram and the tests together, and is merged by pull request with at least one peer review.
+5. **Baseline:** the revision history table is updated and the matrix is re-checked.
