@@ -28,7 +28,39 @@ This Software Requirements Specification (SRS) outlines the functional, non-func
 
 ## 3. User Requirements Definition
 
-> _Owner: UI/UX Lead — branch `feature/srs-user-reqs`. Replace this line with the section content._
+
+User requirements describe, in plain language, the services the system provides to its users and the constraints it works under. Mandatory services use **shall**; optional enhancements use **should**.
+
+**UR-1 [Security & Authentication]:** The Banking Application shall authenticate customers using multi-factor credentials before granting access to any account service.
+
+- *Rationale:* Protects customers' financial assets and supports compliance with data privacy legislation.
+
+**UR-2 [Account Creation]:** The system shall enable customers to open both Current Accounts and Savings Accounts.
+
+- *Rationale:* Offers products suited to different financial needs: everyday spending with an overdraft, or saving with interest.
+
+**UR-3 [Balance Inquiry]:** Authenticated customers shall be able to view the current balance, account number and account type of their own accounts at any time.
+
+- *Rationale:* Lets customers plan their spending and avoid unintended overdrafts.
+
+**UR-4 [Deposit]:** Customers shall be able to deposit funds into their own account and see the updated balance immediately.
+
+- *Rationale:* Depositing is a core banking service and the basis of every later transaction.
+
+**UR-5 [Withdrawal]:** Customers shall be able to withdraw funds from their own account, subject to the overdraft limit of a Current Account and the minimum balance of a Savings Account.
+
+- *Rationale:* Gives customers access to their money while protecting the bank from over-withdrawal.
+
+### 3.1 Summary
+
+| ID | Service | Who uses it | Detailed in |
+|---|---|---|---|
+| UR-1 | Secure sign-in with MFA | Customer | Section 4.1 |
+| UR-2 | Open a Current or Savings Account | Customer | Section 4.2 |
+| UR-3 | View balance | Authenticated customer | Section 4.3 |
+| UR-4 | Deposit funds | Authenticated customer | Section 4.3 |
+| UR-5 | Withdraw funds | Authenticated customer | Sections 4.2 and 4.3 |
+
 
 ## 4. Detailed System Requirements Specification
 
