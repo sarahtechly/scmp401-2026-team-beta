@@ -113,7 +113,14 @@ System requirements expand the user requirements into explicit technical stateme
 
 ## 5. Non-Functional Requirements & Metrics
 
-> _Owner: ScrumMaster — branch `feature/srs-nfr`. Replace this line with the section content._
+### 5.1 Security Requirements
+* All user password inputs must be hashed using bcrypt before storage.
+* All external communications must use TLS 1.3 encryption.
+* Multi-Factor Authentication (MFA) is mandatory for all user login attempts.
+
+### 5.2 Performance & Reliability
+* System API response time must be under 200ms for 95% of standard user queries.
+* System availability objective is 99.9% uptime during operational hours.
 
 ## 6. Graphical Models & Tabular Use Case Specification
 
