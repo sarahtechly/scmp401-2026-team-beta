@@ -33,4 +33,4 @@ This repository holds the Milestone 1 deliverables: the Software Requirements Sp
 
 ## Project board
 
-Sprint 1 backlog: [link to GitHub Project board]
+Sprint 1 backlog: https://github.com/users/sarahtechly/projects/3
